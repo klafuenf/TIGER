@@ -105,6 +105,7 @@ for i in range(num_speakers):
     output_filename = os.path.join(output_dir, f"spk{i+1}.wav")
     speaker_track = ests_speech[i].cpu() # Get the i-th speaker track and move to CPU
     print(f"Saving speaker {i+1} to {output_filename}")
+    speaker_track = speaker_track.unsqueeze(0) if speaker_track.dim() == 1 else speaker_track
     try:
         torchaudio.save(
             output_filename,
