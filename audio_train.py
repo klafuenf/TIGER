@@ -30,7 +30,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import wandb
-wandb.login()
+if os.environ.get("WANDB_API_KEY"):
+    wandb.login(key=os.environ.get("WANDB_API_KEY"))
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
